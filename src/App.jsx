@@ -11,11 +11,14 @@ const people = [
 function App() {
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-center">
-        <section className="p-4 rounded-lg">
-          <h1 className="text-3xl font-poppins ">Currency Converter</h1>
+      <main className="flex min-h-screen justify-between ">
+        <div className="bg-red-500 w-1/2 text-center">
           <MyListbox />
-        </section>
+        </div>
+
+        <div className="bg-blue-500 w-1/2 text-center">
+          <MyListbox />
+        </div>
       </main>
     </>
   )
@@ -31,15 +34,12 @@ function MyListbox() {
       <Listbox.Button>{selectedPerson.name}</Listbox.Button>
       <Listbox.Options>
         {people.map((person) => (
-          <Listbox.Option
-            key={person.id}
-            value={person}
-            disabled={person.unavailable}
-          >
+          <Listbox.Option key={person.id} value={person}>
             {person.name}
           </Listbox.Option>
         ))}
       </Listbox.Options>
+      <p className="text-orange-500">{selectedPerson.name}</p>
     </Listbox>
   )
 }
