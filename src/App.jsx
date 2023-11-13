@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Listbox } from "@headlessui/react"
 
-const people = [
+const currencies = [
   { id: 1, name: "Durward Reynolds", unavailable: false },
   { id: 2, name: "Kenton Towne", unavailable: false },
   { id: 3, name: "Therese Wunsch", unavailable: false },
@@ -27,13 +27,13 @@ function App() {
 export default App
 
 function MyListbox() {
-  const [selectedPerson, setSelectedPerson] = useState(people[0])
+  const [selectedPerson, setSelectedPerson] = useState(currencies[0])
 
   return (
     <Listbox value={selectedPerson} onChange={setSelectedPerson}>
       <Listbox.Button>{selectedPerson.name}</Listbox.Button>
       <Listbox.Options>
-        {people.map((person) => (
+        {currencies.map((person) => (
           <Listbox.Option key={person.id} value={person}>
             {person.name}
           </Listbox.Option>
