@@ -14,20 +14,27 @@ function App() {
 
   return (
     <>
-      <main className="flex min-h-screen justify-between ">
-        <div className="bg-red-500 w-1/2 text-center">
-          <MyListbox
-            selectedCurrency={selectedCurrency}
-            onSelectCurrency={setSelectedCurrency}
-          />
-        </div>
-
-        <div className="bg-blue-500 w-1/2 text-center">
-          <MyListbox
-            selectedCurrency={otherCurrency}
-            onSelectCurrency={setOtherCurrency}
-          />
-        </div>
+      <main className="flex min-h-screen items-center justify-center bg-stone-500">
+        <section className="flex flex-col bg-stone-800 md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[1px] border-orange-300">
+          <h1 className="text-5xl font-light text-orange-300 tracking-wide text-center">
+            Currency Converter
+          </h1>
+          <div className="flex justify-around py-4">
+            {" "}
+            <div className="text-center">
+              <MyListbox
+                selectedCurrency={selectedCurrency}
+                onSelectCurrency={setSelectedCurrency}
+              />
+            </div>
+            <div className="text-center">
+              <MyListbox
+                selectedCurrency={otherCurrency}
+                onSelectCurrency={setOtherCurrency}
+              />
+            </div>
+          </div>
+        </section>
       </main>
     </>
   )
@@ -38,7 +45,9 @@ export default App
 function MyListbox({ selectedCurrency, onSelectCurrency }) {
   return (
     <Listbox value={selectedCurrency} onChange={onSelectCurrency}>
-      <Listbox.Button>{selectedCurrency.name}</Listbox.Button>
+      <Listbox.Button className="bg-slate-200">
+        {selectedCurrency.name}
+      </Listbox.Button>
       <Listbox.Options>
         {currencies.map((currency) => (
           <Listbox.Option key={currency.id} value={currency}>
@@ -46,7 +55,6 @@ function MyListbox({ selectedCurrency, onSelectCurrency }) {
           </Listbox.Option>
         ))}
       </Listbox.Options>
-      <p className="text-orange-500">{selectedCurrency.name}</p>
     </Listbox>
   )
 }
