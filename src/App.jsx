@@ -1,16 +1,31 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Listbox } from "@headlessui/react"
 
 const currencies = [
-  { id: 1, name: "Euro" },
-  { id: 2, name: "US Dollar" },
-  { id: 3, name: "British Pound" },
-  { id: 4, name: "Japanese Yen" },
-  { id: 5, name: "Australian Dollar" },
+  { id: 1, name: "Euro", ISO: "EUR" },
+  { id: 2, name: "US Dollar", ISO: "USD" },
+  { id: 3, name: "British Pound", ISO: "GBP" },
+  { id: 4, name: "Japanese Yen", ISO: "JPY" },
+  { id: 5, name: "Australian Dollar", ISO: "AUD" },
 ]
 function App() {
   const [selectedCurrency, setSelectedCurrency] = useState(currencies[0])
   const [otherCurrency, setOtherCurrency] = useState(currencies[1])
+  useEffect(() => {
+    const host = "api.frankfurter.app"
+    fetch(
+      `https://${host}/latest?amount=10&from=${selectedCurrency.ISO}&to=${otherCurrency.ISO}`
+    )
+      .then((resp) => resp.json())
+      .then((data) => {
+        alert(
+          `10 ${selectedCurrency.name} = ${data.rates.USD} USD\n1 ${
+            selectedCurrency.name
+          } = ${data.rates[otherCurrency.ISO]} ${otherCurrency.name}`
+        )
+        console.log(data)
+      })
+  }, [selectedCurrency, otherCurrency])
 
   return (
     <>
@@ -19,7 +34,7 @@ function App() {
           <h1 className="text-5xl font-light text-orange-300 tracking-wide text-center">
             Currency Converter
           </h1>
-          <div className="flex justify-around gap-2 py-4 bg-red-500/30">
+          <div className="flex justify-around gap-2 py-4 bg-red-500/20">
             {" "}
             <div className="flex flex-col items-center">
               <p className="text-orange-300 font-light">From</p>
