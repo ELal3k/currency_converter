@@ -11,11 +11,12 @@ const currencies = [
 function App() {
   const [selectedCurrency, setSelectedCurrency] = useState(currencies[0])
   const [otherCurrency, setOtherCurrency] = useState(currencies[1])
-  const [amount, setAmount] = useState(2)
+  const [amount, setAmount] = useState(1)
+  const [exchangeRate, setExchangeRate] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       const host = "api.frankfurter.app"
-      const url = `https://${host}/latest?amount=${amount}&from=${selectedCurrency.ISO}&to=${otherCurrency.ISO}`
+      const url = `https://${host}/latest?amount=1&from=${selectedCurrency.ISO}&to=${otherCurrency.ISO}`
 
       try {
         const response = await fetch(url)
@@ -25,12 +26,9 @@ function App() {
         }
 
         const data = await response.json()
+        const rate = data.rates[otherCurrency.ISO].toFixed(2)
 
-        alert(
-          `${amount} ${selectedCurrency.name} is worth ${
-            data.rates[otherCurrency.ISO]
-          } ${otherCurrency.name}`
-        )
+        setExchangeRate(rate)
       } catch (error) {
         console.log(error)
       }
@@ -46,7 +44,7 @@ function App() {
           <h1 className="text-5xl font-light text-orange-300 tracking-wide text-center">
             Currency Converter
           </h1>
-          <div className="flex justify-around gap-2 py-4 bg-red-500/20">
+          <div className="flex justify-around gap-2 py-4 bg-red-500/20 z-30 h-20 rounded-md">
             {" "}
             <div className="flex flex-col items-center">
               <p className="text-orange-300 font-light">From</p>
@@ -63,10 +61,19 @@ function App() {
               />
             </div>
           </div>
+          <input
+            type="number"
+            placeholder={selectedCurrency.name}
+            onChange={(e) => setAmount(e.target.value)}
+            className="absolute bottom-40 left-1/2 -translate-x-1/2 w-[10rem] z-0"
+          />
+          <div>{(amount * exchangeRate).toFixed(2)}</div>
           <p className="absolute bottom-3 right-1/2 translate-x-1/2 text-orange-300 font-light w-full px-2">
-            {" "}
-            Exchange Rate: 1 {selectedCurrency.name} equals X{" "}
-            {otherCurrency.name}s
+            {selectedCurrency.name === otherCurrency.name
+              ? `Exchange Rate: 1 ${selectedCurrency.name} equals 1
+              ${otherCurrency.name}s`
+              : `Exchange Rate: 1 ${selectedCurrency.name} equals ${exchangeRate} 
+            ${otherCurrency.name}s`}
           </p>
         </section>
       </main>
