@@ -10,7 +10,8 @@ This web application allows users to convert between different currencies. It ut
 
 - Currency conversion
 - User-friendly interface
-- Responsive design
+- Fully Responsive design
+- HeadlessUI components
 
 ## Getting Started
 
