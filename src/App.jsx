@@ -11,21 +11,33 @@ const currencies = [
 function App() {
   const [selectedCurrency, setSelectedCurrency] = useState(currencies[0])
   const [otherCurrency, setOtherCurrency] = useState(currencies[1])
+  const [amount, setAmount] = useState(2)
   useEffect(() => {
-    const host = "api.frankfurter.app"
-    fetch(
-      `https://${host}/latest?amount=10&from=${selectedCurrency.ISO}&to=${otherCurrency.ISO}`
-    )
-      .then((resp) => resp.json())
-      .then((data) => {
+    const fetchData = async () => {
+      const host = "api.frankfurter.app"
+      const url = `https://${host}/latest?amount=${amount}&from=${selectedCurrency.ISO}&to=${otherCurrency.ISO}`
+
+      try {
+        const response = await fetch(url)
+
+        if (!response.ok) {
+          throw new Error(response.statusText)
+        }
+
+        const data = await response.json()
+
         alert(
-          `10 ${selectedCurrency.name} = ${data.rates.USD} USD\n1 ${
-            selectedCurrency.name
-          } = ${data.rates[otherCurrency.ISO]} ${otherCurrency.name}`
+          `${amount} ${selectedCurrency.name} is worth ${
+            data.rates[otherCurrency.ISO]
+          } ${otherCurrency.name}`
         )
-        console.log(data)
-      })
-  }, [selectedCurrency, otherCurrency])
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchData()
+  }, [selectedCurrency, otherCurrency, amount])
 
   return (
     <>
