@@ -26,11 +26,11 @@ function App() {
         }
 
         const data = await response.json()
-        const rate = data.rates[otherCurrency.ISO].toFixed(2)
+        const rate = data.rates[otherCurrency.ISO]?.toFixed(2)
 
         setExchangeRate(rate)
       } catch (error) {
-        console.log(error)
+        console.log(error.message)
       }
     }
 
@@ -39,8 +39,8 @@ function App() {
 
   return (
     <>
-      <main className="flex min-h-screen items-center justify-center bg-stone-500">
-        <section className="flex flex-col bg-stone-800 md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[1px] border-orange-300 h-[25rem] relative">
+      <main className="flex min-h-screen items-center justify-center bg-slate-200">
+        <section className="flex flex-col bg-stone-800 md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[1px] border-orange-300 sm:h-[25rem] h-[30rem] relative">
           <h1 className="text-5xl font-light text-orange-300 tracking-wide text-center mb-3">
             Currency Converter
           </h1>
@@ -61,35 +61,28 @@ function App() {
               />
             </div>
           </div>
-          {/* <div className="absolute bottom-40 left-1/2 -translate-x-1/2 z-0">
-            <input
-              type="number"
-              placeholder={selectedCurrency.name}
-              onChange={(e) => setAmount(e.target.value)}
-            />
-            <p>{(amount * exchangeRate).toFixed(2) + otherCurrency.ISO}</p>
-            <input
-              value={
-                amount === 1
-                  ? otherCurrency.name
-                  : (amount * exchangeRate).toFixed(2)
-              }
-              type="text"
-            />
-          </div> */}
-          <div className="flex justify-around items-center gap-2 py-4 bg-red-500/20 z-0 h-[8rem] rounded-md sm:mx-10 mt-6">
+
+          <div className="flex flex-wrap justify-center items-center gap-2 py-4 bg-red-500/20 z-0 h-[8rem] rounded-md sm:mx-10 mt-6">
             {" "}
             <div className="flex">
               <input
                 type="number"
-                placeholder={selectedCurrency.name}
-                onChange={(e) => setAmount(e.target.value)}
-                className="w-20"
+                value={amount}
+                onChange={(e) => {
+                  const newValue = e.target.value < 0 ? 0 : e.target.value
+                  setAmount(newValue)
+                }}
+                className="w-20 rounded-md px-2 text-lg bg-slate-200"
               />
             </div>
-            <p className="text-orange-300 font-light"> equals to</p>
-            <p className="text-orange-300 font-light text-2xl">
-              {`${(amount * exchangeRate).toFixed(2)} ${otherCurrency.ISO}`}
+            <p className="text-orange-300 font-light">
+              {" "}
+              {selectedCurrency.ISO} equals to
+            </p>
+            <p className="text-orange-300 font-light text-3xl">
+              {selectedCurrency.name === otherCurrency.name
+                ? `${amount.toFixed(2)} ${otherCurrency.ISO}`
+                : `${(amount * exchangeRate).toFixed(2)} ${otherCurrency.name}`}
             </p>
           </div>
 
