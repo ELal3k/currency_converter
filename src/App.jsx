@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Listbox } from "@headlessui/react"
-
+import { SunIcon } from "@heroicons/react/24/solid"
 const currencies = [
   { id: 1, name: "Euro", ISO: "EUR" },
   { id: 2, name: "US Dollar", ISO: "USD" },
@@ -39,22 +39,26 @@ function App() {
 
   return (
     <>
-      <main className="flex min-h-screen items-center justify-center bg-slate-200">
-        <section className="flex flex-col bg-stone-800 md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[1px] border-orange-300 sm:h-[25rem] h-[30rem] relative">
-          <h1 className="text-5xl font-light text-orange-300 tracking-wide text-center mb-3">
+      <main className="flex min-h-screen items-center justify-center bg-skin-button text-skin-inverted">
+        <div className="absolute top-5 right-5 h-8 w-8 ">
+          <SunIcon />
+        </div>
+        <section className="flex flex-col md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[1px]  sm:h-[25rem] h-[30rem] relative">
+          <h1 className="text-5xl font-light  tracking-wide text-center mb-3">
             Currency Converter
           </h1>
-          <div className="flex justify-around gap-2 py-4 bg-red-500/20 z-30 h-[6rem] rounded-md sm:mx-10">
+
+          <div className="flex justify-around gap-2 py-4  z-30 h-[6rem] rounded-md sm:mx-10">
             {" "}
             <div className="flex flex-col items-center">
-              <p className="text-orange-300 font-light">From</p>
+              <p className="font-light">From</p>
               <MyListbox
                 selectedCurrency={selectedCurrency}
                 onSelectCurrency={setSelectedCurrency}
               />
             </div>
             <div className="flex flex-col items-center">
-              <p className="text-orange-300 font-light">To</p>
+              <p className="font-light">To</p>
               <MyListbox
                 selectedCurrency={otherCurrency}
                 onSelectCurrency={setOtherCurrency}
@@ -62,7 +66,7 @@ function App() {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-2 py-4 bg-red-500/20 z-0 h-[8rem] rounded-md sm:mx-10 mt-6">
+          <div className="flex flex-wrap justify-center items-center gap-2 py-4 z-0 h-[8rem] rounded-md sm:mx-10 mt-6">
             {" "}
             <div className="flex">
               <input
@@ -72,21 +76,18 @@ function App() {
                   const newValue = e.target.value < 0 ? 0 : e.target.value
                   setAmount(newValue)
                 }}
-                className="w-20 rounded-md px-2 text-lg bg-slate-200"
+                className="w-20 rounded-md px-2 text-lg"
               />
             </div>
-            <p className="text-orange-300 font-light">
-              {" "}
-              {selectedCurrency.ISO} equals to
-            </p>
-            <p className="text-orange-300 font-light text-3xl">
+            <p className="font-light"> {selectedCurrency.ISO} equals to</p>
+            <p className=" font-light text-3xl">
               {selectedCurrency.name === otherCurrency.name
                 ? `${amount.toFixed(2)} ${otherCurrency.ISO}`
                 : `${(amount * exchangeRate).toFixed(2)} ${otherCurrency.name}`}
             </p>
           </div>
 
-          <p className="absolute bottom-3 right-1/2 translate-x-1/2 text-orange-300 font-light w-full px-2">
+          <p className="absolute bottom-3 right-1/2 translate-x-1/2  font-light w-full px-2">
             {selectedCurrency.name === otherCurrency.name
               ? `Exchange Rate: 1 ${selectedCurrency.name} equals 1
               ${otherCurrency.name}s`
@@ -104,10 +105,10 @@ export default App
 function MyListbox({ selectedCurrency, onSelectCurrency }) {
   return (
     <Listbox value={selectedCurrency} onChange={onSelectCurrency}>
-      <Listbox.Button className="bg-slate-200 w-[10rem] rounded-md font-light">
+      <Listbox.Button className="w-[10rem] rounded-md font-light">
         {selectedCurrency.name}
       </Listbox.Button>
-      <Listbox.Options className="bg-slate-200 mt-[1px] w-[10rem] rounded-md font-light">
+      <Listbox.Options className="mt-[1px] w-[10rem] rounded-md font-light">
         {currencies.map((currency) => (
           <Listbox.Option key={currency.id} value={currency}>
             {currency.name}

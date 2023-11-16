@@ -2,3 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-text-base: #4f46e5; /* bg-indigo-600 */
+    --color-text-muted: #1f2937; /* bg-gray-800 */
+    --color-fill: #e5e7eb; /* bg-gray-200 */
+    --color-text-inverted: #e5e7eb; /* bg-gray-200 */
+    --color-button-base: #4f46e5; /*bg-indigo-600 */
+  }
+  :root [data-theme="dark"] {
+    --color-text-base: #e5e7eb; /* bg-indigo-600 */
+  }
+}
