@@ -39,11 +39,11 @@ function App() {
 
   return (
     <>
-      <main className="flex min-h-screen items-center justify-center theme-light theme-blue bg-primaryBg text-primary">
+      <main className="flex min-h-screen items-center justify-center theme-everglade theme-dark bg-primaryBg text-primary">
         <div className="absolute top-5 right-5 h-8 w-8 ">
           <SunIcon />
         </div>
-        <section className="flex flex-col md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[2px] border-primary sm:h-[25rem] h-[30rem] relative theme-green theme-light bg-neutralBg">
+        <section className="flex flex-col md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[2px] border-primary sm:h-[25rem] h-[30rem] relative bg-neutralBg">
           <h1 className="text-5xl font-light tracking-wide text-center mb-3">
             Currency Converter
           </h1>

@@ -7,9 +7,9 @@ export default {
       colors: {
         onNeutralBg: "rgb(var(--onNeutralBg))",
         neutralBg: "rgb(var(--neutralBg))",
-        primaryBg: "var(--primaryBg)",
-        onPrimaryBg: "var(--onPrimaryBg)",
-        primary: "var(--primary)",
+        primaryBg: "hsl(var(--primaryBg))",
+        onPrimaryBg: "hsl(var(--onPrimaryBg))",
+        primary: "hsl(var(--primary))",
       },
     },
   },
