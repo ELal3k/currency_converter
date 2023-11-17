@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        onNeutralBg: "var(--onNeutralBg)",
-        neutralBg: "var(--neutralBg)",
+        onNeutralBg: "rgb(var(--onNeutralBg))",
+        neutralBg: "rgb(var(--neutralBg))",
         primaryBg: "var(--primaryBg)",
         onPrimaryBg: "var(--onPrimaryBg)",
         primary: "var(--primary)",
