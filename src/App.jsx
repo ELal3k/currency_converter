@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Listbox } from "@headlessui/react"
 import { SunIcon } from "@heroicons/react/24/solid"
+import { MoonIcon } from "@heroicons/react/24/solid"
 const currencies = [
   { id: 1, name: "Euro", ISO: "EUR" },
   { id: 2, name: "US Dollar", ISO: "USD" },
@@ -8,11 +9,17 @@ const currencies = [
   { id: 4, name: "Japanese Yen", ISO: "JPY" },
   { id: 5, name: "Australian Dollar", ISO: "AUD" },
 ]
+
+const themes = ["woodsmoke", "everglade"]
+
 function App() {
   const [selectedCurrency, setSelectedCurrency] = useState(currencies[0])
   const [otherCurrency, setOtherCurrency] = useState(currencies[1])
   const [amount, setAmount] = useState(1)
   const [exchangeRate, setExchangeRate] = useState(null)
+  const [darkMode, setDarkMode] = useState(false)
+  const [theme, setTheme] = useState(themes[0])
+
   useEffect(() => {
     const fetchData = async () => {
       const host = "api.frankfurter.app"
@@ -37,13 +44,49 @@ function App() {
     fetchData()
   }, [selectedCurrency, otherCurrency, amount])
 
+  function handleBorder(idx) {
+    if (idx === 0) {
+      return "rounded-l-md"
+    } else {
+      return "rounded-r-md border-l-0"
+    }
+  }
+
+  function handleThemeChange(idx) {
+    setTheme(themes[idx])
+  }
+
   return (
     <>
-      <main className="flex min-h-screen items-center justify-center theme-everglade theme-dark bg-primaryBg text-primary">
-        <div className="absolute top-5 right-5 h-8 w-8 ">
-          <SunIcon />
+      <main
+        className={`flex min-h-screen items-center justify-center theme-${
+          darkMode ? "dark" : "light"
+        } theme-${theme} bg-primaryBg text-primary`}
+      >
+        <div className="fixed top-5 left-5">
+          {themes.map((theme, idx) => (
+            <button
+              key={idx}
+              className={`px-2 border-[1px] border-primary ${handleBorder(
+                idx
+              )}`}
+              onClick={() => handleThemeChange(idx)}
+            >
+              {theme}
+            </button>
+          ))}
         </div>
-        <section className="flex flex-col md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[2px] border-primary sm:h-[25rem] h-[30rem] relative bg-neutralBg">
+        <button
+          className="fixed top-5 right-5 cursor-pointer"
+          onClick={() => setDarkMode((prev) => !prev)}
+        >
+          {darkMode ? (
+            <MoonIcon className="h-7 w-7" />
+          ) : (
+            <SunIcon className="h-8 w-8" />
+          )}
+        </button>
+        <section className="flex flex-col md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[2px] border-primary sm:h-[25rem] h-[30rem] relative">
           <h1 className="text-5xl font-light tracking-wide text-center mb-3">
             Currency Converter
           </h1>
