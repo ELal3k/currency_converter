@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Listbox } from "@headlessui/react"
+import { Listbox, Transition } from "@headlessui/react"
 import { SunIcon } from "@heroicons/react/24/solid"
 import { MoonIcon } from "@heroicons/react/24/solid"
 const currencies = [
@@ -86,7 +86,7 @@ function App() {
             <SunIcon className="h-8 w-8" />
           )}
         </button>
-        <section className="flex flex-col md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[2px] border-primary sm:h-[25rem] h-[30rem] relative bg-secondaryBg">
+        <section className="flex flex-col md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[1px] border-onPrimaryBg sm:h-[25rem] h-[30rem] relative bg-secondaryBg">
           <h1 className="text-5xl font-light tracking-wide text-center mb-3">
             Currency Converter
           </h1>
@@ -148,16 +148,25 @@ export default App
 function MyListbox({ selectedCurrency, onSelectCurrency }) {
   return (
     <Listbox value={selectedCurrency} onChange={onSelectCurrency}>
-      <Listbox.Button className="w-[10rem] rounded-md font-light bg-primaryBg">
+      <Listbox.Button className="w-[10rem] rounded-md font-light bg-primaryBg border-[1px] border-onPrimaryBg">
         {selectedCurrency.name}
       </Listbox.Button>
-      <Listbox.Options className="mt-[1px] w-[10rem] rounded-md font-light bg-primaryBg">
-        {currencies.map((currency) => (
-          <Listbox.Option key={currency.id} value={currency}>
-            {currency.name}
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
+      <Transition
+        enter="transition duration-100 ease-out"
+        enterFrom="transform scale-95 opacity-0"
+        enterTo="transform scale-100 opacity-100"
+        leave="transition duration-75 ease-out"
+        leaveFrom="transform scale-100 opacity-100"
+        leaveTo="transform scale-95 opacity-0"
+      >
+        <Listbox.Options className="mt-[1px] w-[10rem] rounded-md font-light bg-primaryBg px-2">
+          {currencies.map((currency) => (
+            <Listbox.Option key={currency.id} value={currency}>
+              {currency.name}
+            </Listbox.Option>
+          ))}
+        </Listbox.Options>
+      </Transition>
     </Listbox>
   )
 }
