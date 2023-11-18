@@ -50,6 +50,7 @@
   --neutralBg: var(--color-neutral-50);
   --onNeutralBg: var(--color-neutral-900);
   --primaryBg: var(--color-primary-100);
+  --secondaryBg: var(--color-primary-400);
   --onPrimaryBg: var(--color-primary-900);
   --primary: var(--color-primary-500);
 }
@@ -58,6 +59,7 @@
   --neutralBg: var(--color-neutral-900);
   --onNeutralBg: var(--color-neutral-50);
   --primaryBg: var(--color-primary-900);
+  --secondaryBg: var(--color-primary-400);
   --onPrimaryBg: var(--color-primary-100);
   --primary: var(--color-primary-400);
 }

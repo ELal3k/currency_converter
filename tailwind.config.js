@@ -8,6 +8,7 @@ export default {
         onNeutralBg: "rgb(var(--onNeutralBg))",
         neutralBg: "rgb(var(--neutralBg))",
         primaryBg: "hsl(var(--primaryBg))",
+        secondaryBg: "hsl(var(--secondaryBg))",
         onPrimaryBg: "hsl(var(--onPrimaryBg))",
         primary: "hsl(var(--primary))",
       },

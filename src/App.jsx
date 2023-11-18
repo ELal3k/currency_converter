@@ -61,7 +61,7 @@ function App() {
       <main
         className={`flex min-h-screen items-center justify-center theme-${
           darkMode ? "dark" : "light"
-        } theme-${theme} bg-primaryBg text-primary`}
+        } theme-${theme} bg-primaryBg text-onPrimaryBg`}
       >
         <div className="fixed top-5 left-5">
           {themes.map((theme, idx) => (
@@ -86,7 +86,7 @@ function App() {
             <SunIcon className="h-8 w-8" />
           )}
         </button>
-        <section className="flex flex-col md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[2px] border-primary sm:h-[25rem] h-[30rem] relative">
+        <section className="flex flex-col md:w-1/2 md:px-0 mx-10 w-full p-2 rounded-lg border-[2px] border-primary sm:h-[25rem] h-[30rem] relative bg-secondaryBg">
           <h1 className="text-5xl font-light tracking-wide text-center mb-3">
             Currency Converter
           </h1>
@@ -119,7 +119,7 @@ function App() {
                   const newValue = e.target.value < 0 ? 0 : e.target.value
                   setAmount(newValue)
                 }}
-                className="w-20 rounded-md px-2 text-lg"
+                className="w-20 rounded-md px-2 text-lg text-gray-900"
               />
             </div>
             <p className="font-light"> {selectedCurrency.ISO} equals to</p>
@@ -148,10 +148,10 @@ export default App
 function MyListbox({ selectedCurrency, onSelectCurrency }) {
   return (
     <Listbox value={selectedCurrency} onChange={onSelectCurrency}>
-      <Listbox.Button className="w-[10rem] rounded-md font-light">
+      <Listbox.Button className="w-[10rem] rounded-md font-light bg-primaryBg">
         {selectedCurrency.name}
       </Listbox.Button>
-      <Listbox.Options className="mt-[1px] w-[10rem] rounded-md font-light">
+      <Listbox.Options className="mt-[1px] w-[10rem] rounded-md font-light bg-primaryBg">
         {currencies.map((currency) => (
           <Listbox.Option key={currency.id} value={currency}>
             {currency.name}
