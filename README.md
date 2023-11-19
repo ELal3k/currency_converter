@@ -1,15 +1,17 @@
 # Currency Converter
 
-A simple currency converter React app built with Vite.
+A simple currency converter React app built with Vite and [Frankfurter.app]([https://link-url-here.org](https://www.frankfurter.app/)) API.
 
 ## Overview
 
-This web application allows users to convert between different currencies. It utilizes React and Vite for a fast and efficient development experience.
+This web application allows users to convert between different currencies.The core features are pretty straight forward but for the UI i used CSS variables to implement 2 different themes and light-dark mode(not using the native Tailwind's dark variant).
+
 
 ## Features
 
 - Currency conversion
-- User-friendly interface
+- Two UI themes
+- Dark and light mode
 - Fully Responsive design
 - HeadlessUI components
 
