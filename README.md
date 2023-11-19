@@ -1,6 +1,6 @@
 # Currency Converter
 
-A simple currency converter React app built with Vite and [Frankfurter.app]([https://link-url-here.org](https://www.frankfurter.app/)) API.
+A simple currency converter React app built with Vite and [Frankfurter.app](https://www.frankfurter.app/)) API.
 
 ## Overview
 
