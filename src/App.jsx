@@ -126,7 +126,7 @@ function App() {
             <p className=" font-light text-3xl">
               {selectedCurrency.name === otherCurrency.name
                 ? `${amount.toFixed(2)} ${otherCurrency.ISO}`
-                : `${(amount * exchangeRate).toFixed(2)} ${otherCurrency.name}`}
+                : `${(amount * exchangeRate).toFixed(2)} ${otherCurrency.ISO}`}
             </p>
           </div>
 
