@@ -28,3 +28,21 @@ This web application allows users to convert between different currencies.The co
 
    ```bash
    git clone https://github.com/your-username/currency-converter.git
+
+2. Clone the repository:
+
+   ```bash
+   cd currency-converter
+
+3. Install depedencies
+
+   ```bash
+    npm install
+
+4. After installing the dependencies, start the application:
+
+   ```bash
+    npm run dev
+   
+
+
