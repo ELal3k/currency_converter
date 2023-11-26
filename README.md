@@ -2,6 +2,14 @@
 
 A simple currency converter React app built with Vite and [Frankfurter.app](https://www.frankfurter.app/) API.
 
+<div style="display: flex; flex-wrap: wrap; gap: 16px;">
+  <img src="src/assets/img1.png" alt="Image 1" width="400" >
+  <img src="src/assets/img2.png" alt="Image 2" width="400" >
+  <img src="src/assets/img3.png" alt="Image 3" width="400" >
+  <img src="src/assets/img4.png" alt="Image 4" width="400" >
+</div>
+
+## Overview
 ## Overview
 
 This web application allows users to convert between different currencies.The core features are pretty straight forward but for the UI i used CSS variables to implement 2 different themes and light-dark mode(not using the native Tailwind's dark variant).
